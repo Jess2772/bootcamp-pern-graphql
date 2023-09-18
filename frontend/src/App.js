@@ -1,19 +1,19 @@
-// Define global imports here
-import React from 'react';
-
-// Define relative imports here
+import React, { useState } from 'react';
 import Title from './components/Title';
 import DisplayContainer from './components/DisplayContainer';
+import AddRestaurant from './components/AddRestaurant';
+import Navbar from './components/Navbar';
 
-/**
- * This is the root component of your React App.
- * All classes and components will be imported into the project when included in this class.
- */
 const App = () => {
+  const [currentPage, setCurrentPage] = useState('home');
+
   return (
     <div className="App">
-      <Title teamName="your_team_name" ></Title>
-      <DisplayContainer />
+      <Title teamName="your_team_name" />
+      <Navbar setCurrentPage={setCurrentPage} />
+
+      {currentPage === 'home' && <DisplayContainer />}
+      {currentPage === 'add' && <AddRestaurant />}
     </div>
   );
 }
